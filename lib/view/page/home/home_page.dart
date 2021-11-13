@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   AppStateViewModal appStateViewModal = AppStateViewModal();
 
   late Future<List<PackageDataModal>> packageList;
-  late Future<List<ImageDataModal>> imageList;
 
   @override
   void initState() {

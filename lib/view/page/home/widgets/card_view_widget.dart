@@ -19,6 +19,7 @@ class CardView extends StatefulWidget {
 class _CardViewState extends State<CardView> {
   @override
   Widget build(BuildContext context) {
+    // print(jsonDecode(widget.imageList.then((value) => value).toString()));
     return FutureBuilder<List<ImageDataModal>>(
       future: widget.imageList,
       builder: (context, imageSnapshot) {
@@ -35,16 +36,18 @@ class _CardViewState extends State<CardView> {
             style: Theme.of(context).textTheme.subtitle1,
           );
         }
+
         return Card(
           margin: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               CarouselSlider.builder(
                 itemCount: imageSnapshot.data!.length,
-                itemBuilder: (context, imageIndex, pageIndex) =>
-                    CachedNetworkImage(
-                  imageUrl: imageSnapshot.data![1].image,
-                  placeholder: (context, text) => const Placeholder(),
+                itemBuilder: (context, imageIndex, pageIndex) => ClipRRect(
+                  child: CachedNetworkImage(
+                    imageUrl: imageSnapshot.data![imageIndex].image,
+                    placeholder: (context, text) => const Placeholder(),
+                  ),
                 ),
                 options: CarouselOptions(aspectRatio: 16 / 9, autoPlay: true),
               ),

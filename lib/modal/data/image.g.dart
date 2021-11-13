@@ -9,13 +9,13 @@ part of 'image.dart';
 ImageDataModal _$ImageDataModalFromJson(Map<String, dynamic> json) =>
     ImageDataModal(
       imageId: json['imageId'] as String,
-      packageId: json['itemId'] as String,
+      packageId: json['packageId'] as String,
       image: json['image'] as String,
     );
 
 Map<String, dynamic> _$ImageDataModalToJson(ImageDataModal instance) =>
     <String, dynamic>{
       'imageId': instance.imageId,
-      'itemId': instance.packageId,
+      'packageId': instance.packageId,
       'image': instance.image,
     };

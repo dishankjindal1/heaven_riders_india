@@ -19,35 +19,26 @@ class CardView extends StatefulWidget {
 class _CardViewState extends State<CardView> {
   @override
   Widget build(BuildContext context) {
+    // print(jsonDecode(widget.imageList.then((value) => value).toString()));
     return FutureBuilder<List<ImageDataModal>>(
       future: widget.imageList,
       builder: (context, imageSnapshot) {
-        if (!imageSnapshot.hasData &&
-            imageSnapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        if (!imageSnapshot.hasData) {
-          return Text(
-            'No image found',
-            style: Theme.of(context).textTheme.subtitle1,
-          );
-        }
         return Card(
           margin: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CarouselSlider.builder(
-                itemCount: imageSnapshot.data!.length,
-                itemBuilder: (context, imageIndex, pageIndex) =>
-                    CachedNetworkImage(
-                  imageUrl: imageSnapshot.data![1].image,
-                  placeholder: (context, text) => const Placeholder(),
-                ),
-                options: CarouselOptions(aspectRatio: 16 / 9, autoPlay: true),
-              ),
+              imageSnapshot.hasData
+                  ? CarouselSlider.builder(
+                      itemCount: imageSnapshot.data!.length,
+                      itemBuilder: (context, imageIndex, pageIndex) =>
+                          CachedNetworkImage(
+                        imageUrl: imageSnapshot.data![imageIndex].image,
+                        placeholder: (context, text) => const Placeholder(),
+                      ),
+                      options:
+                          CarouselOptions(aspectRatio: 16 / 9, autoPlay: true),
+                    )
+                  : const Center(child: CircularProgressIndicator()),
               Text(widget.packageData.title),
               const SizedBox(height: 2),
               Text(widget.packageData.description),

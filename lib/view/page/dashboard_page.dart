@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
 import 'package:heaven_riders_india/router/app_router.gr.dart';
 import 'package:heaven_riders_india/view/screen/advert_overlay_banner_widget.dart';
@@ -72,17 +73,28 @@ class AutoTabsRouterWidget extends StatelessWidget {
         var tabsRouter = AutoTabsRouter.of(context);
 
         return Scaffold(
-          appBar: AppBar(
-            actions: [
-              tabsRouter.activeIndex == 0
-                  ? IconButton(
-                      onPressed: () {
-                        ssvm.setGridViewCount(2);
-                      },
-                      icon: const Icon(Icons.home))
-                  : const Icon(Icons.backup),
-            ],
-          ),
+          appBar: AppBar(actions: [
+            tabsRouter.activeIndex == 0
+                ? IconButton(
+                    onPressed: () {
+                      ssvm.setGridViewCount();
+                    },
+                    icon: ssvm.gridViewCount
+                        ? const Icon(FontAwesomeIcons.box)
+                        : const Icon(FontAwesomeIcons.borderAll),
+                  )
+                : tabsRouter.activeIndex == 1
+                    ? IconButton(
+                        onPressed: () {
+                          ssvm.setGridViewCount();
+                        },
+                        icon: const Icon(Icons.home))
+                    : IconButton(
+                        onPressed: () {
+                          ssvm.setGridViewCount();
+                        },
+                        icon: const Icon(Icons.home)),
+          ]),
           drawer: appStateViewModal.authState.status == Status.initial
               ? appDrawerLoggedOut(context, appStateViewModal)
               : appDrawerLoggedIn(context, appStateViewModal),

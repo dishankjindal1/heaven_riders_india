@@ -2,11 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:heaven_riders_india/modal/router/app_router.gr.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
+import 'package:heaven_riders_india/router/app_router.gr.dart';
 import 'package:heaven_riders_india/view/screen/advert_overlay_banner_widget.dart';
 import 'package:heaven_riders_india/view/screen/drawer.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
+import 'package:heaven_riders_india/view_model/setting_state_view_modal.dart';
 import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -18,21 +19,33 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      Provider.of<AppStateViewModal>(context, listen: false).getPackages();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final appStateViewModal = Provider.of<AppStateViewModal>(context);
+    var asvm = Provider.of<AppStateViewModal>(context);
     return Stack(
       children: [
         const AutoTabsRouterWidget(),
-        if (appStateViewModal.viewState.status == Status.initial)
+        if (asvm.viewState.status == Status.initial)
           Scaffold(
-            body: advertOverlayBannerWidget(appStateViewModal),
+            body: advertOverlayBannerWidget(asvm),
           ),
-        if (appStateViewModal.viewState.status == Status.loading)
+        if (asvm.viewState.status == Status.loading)
           Scaffold(
             backgroundColor:
-                Color(Theme.of(context).primaryColor.value).withOpacity(0.5),
-            body: const Center(child: CircularProgressIndicator()),
+                Color(Theme.of(context).primaryColor.value).withOpacity(0.9),
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
       ],
     );
@@ -46,6 +59,9 @@ class AutoTabsRouterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appStateViewModal = Provider.of<AppStateViewModal>(context);
+    var ssvm = Provider.of<SettingStateViewModal>(context);
+
     return AutoTabsRouter(
       routes: [
         const HomeRoute(),
@@ -53,11 +69,20 @@ class AutoTabsRouterWidget extends StatelessWidget {
         const SettingRoute(),
       ],
       builder: (context, child, animation) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        final appStateViewModal = Provider.of<AppStateViewModal>(context);
+        var tabsRouter = AutoTabsRouter.of(context);
 
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: [
+              tabsRouter.activeIndex == 0
+                  ? IconButton(
+                      onPressed: () {
+                        ssvm.setGridViewCount(2);
+                      },
+                      icon: const Icon(Icons.home))
+                  : const Icon(Icons.backup),
+            ],
+          ),
           drawer: appStateViewModal.authState.status == Status.initial
               ? appDrawerLoggedOut(context, appStateViewModal)
               : appDrawerLoggedIn(context, appStateViewModal),

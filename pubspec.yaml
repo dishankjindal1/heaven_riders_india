@@ -69,6 +69,9 @@ dependencies:
   # carousel slider
   carousel_slider: any
 
+  # Custom Refresh animation
+  pull_to_refresh: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

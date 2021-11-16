@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:heaven_riders_india/view/page/dashboard_page.dart';
+import 'package:heaven_riders_india/view/page/display/display_page.dart';
 import 'package:heaven_riders_india/view/page/home/home_page.dart';
 import 'package:heaven_riders_india/view/page/login_page.dart';
 import 'package:heaven_riders_india/view/page/not_found_page.dart';
@@ -13,6 +14,7 @@ import 'package:heaven_riders_india/view/page/setting_page.dart';
       AutoRoute(page: LoginPage),
       AutoRoute(page: SettingPage),
     ]),
+    AutoRoute(page: DisplayPage),
     AutoRoute(page: NotFoundPage),
   ],
 )

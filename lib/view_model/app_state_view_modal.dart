@@ -11,19 +11,52 @@ class AppStateViewModal extends BaseViewModal {
 
   UserDataModal get userDataModal => _userDataModal;
 
-  Future<List<PackageDataModal>> getPackages() async {
-    return await _appRepository.getCollection(data: 'packages', item: '');
+  List<PackageDataModal> _packageList = [];
+
+  List<PackageDataModal> get packageList => _packageList;
+
+  List<List<ImageDataModal>> _imageListOfList = [[]];
+
+  List<List<ImageDataModal>> get imageListOfList => _imageListOfList;
+
+  getPackages() async {
+    setviewState(Status.loading);
+    _packageList =
+        await _appRepository.getCollection(data: 'packages', item: '');
+    _imageListOfList = List.generate(
+      _packageList.length,
+      (index) => List.filled(
+          1,
+          ImageDataModal(
+              imageId: '1',
+              packageId: '1',
+              image:
+                  'https://github.com/dishankjj/heaven_riders_india/blob/cac04e0ace33d882c91227a362ae71c3afddcea5/assets/AppIcons/playstore.png'),
+          growable: true),
+      growable: true,
+    );
+    notifyListeners();
+    setviewState(Status.completed);
+    for (var item in _packageList) {
+      int index = int.parse(item.packageId);
+      _imageListOfList[index - 1] = await _appRepository.getCollection(
+        data: 'images',
+        item: index.toString(),
+      );
+      notifyListeners();
+    }
   }
 
   getItemsRefresh() async {
     await getPackages();
   }
 
-  Future<List<ImageDataModal>> getImages({required String packageId}) async {
-    return await _appRepository.getCollection(data: 'images', item: packageId);
+  getImages({required String packageId}) async {
+    setviewState(Status.loading);
+    setviewState(Status.completed);
   }
 
-  Future<void> mockData({id = 1}) async {
+  Future<void> mockData({int id = 1}) async {
     setviewState(Status.loading);
     _userDataModal = await _appRepository.mockData();
     setauthState(Status.completed);

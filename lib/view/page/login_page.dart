@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:heaven_riders_india/modal/utils/app_state.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:provider/provider.dart';
 
@@ -18,19 +17,22 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference items = FirebaseFirestore.instance.collection('items');
+    // CollectionReference items = FirebaseFirestore.instance.collection('items');
 
-    items
-        .add({'title': 'Kedarkantha', 'company': 'hri', 'age': '26'})
-        .then((value) => print("User Added"))
-        .catchError((onError) => print("Failed to add user: $onError"));
+    // items
+    //     .add({'title': 'Kedarkantha', 'company': 'hri', 'age': '26'})
+    //     .then((value) => print("User Added 1"))
+    //     .catchError((onError) => print("Failed to add user: $onError"));
 
     AppStateViewModal appStateViewModal =
         Provider.of<AppStateViewModal>(context);
     return Center(
-      child: appStateViewModal.authState.status == Status.initial
-          ? const CircularProgressIndicator()
-          : updateUserFormWidget(context, appStateViewModal),
+      child: StreamBuilder(
+        stream: appStateViewModal.firebaseAuth.authStateChanges(),
+        builder: (context, snapshot) => snapshot.hasData
+            ? updateUserFormWidget(context, appStateViewModal)
+            : const CircularProgressIndicator(),
+      ),
     );
   }
 

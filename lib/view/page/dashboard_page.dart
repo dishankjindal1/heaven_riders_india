@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
 import 'package:heaven_riders_india/router/app_router.gr.dart';
 import 'package:heaven_riders_india/view/screen/advert_overlay_banner_widget.dart';
-import 'package:heaven_riders_india/view/screen/drawer.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
-import 'package:heaven_riders_india/view_model/setting_state_view_modal.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -32,15 +31,16 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    var asvm = Provider.of<AppStateViewModal>(context);
+    var app = Provider.of<AppStateViewModal>(context);
+    app.app = app;
     return Stack(
       children: [
         const AutoTabsRouterWidget(),
-        if (asvm.viewState.status == Status.initial)
+        if (app.viewState == Status.initial)
           Scaffold(
-            body: advertOverlayBannerWidget(asvm),
+            body: advertOverlayBannerWidget(app),
           ),
-        if (asvm.viewState.status == Status.loading)
+        if (app.viewState == Status.loading)
           Scaffold(
             backgroundColor:
                 Color(Theme.of(context).primaryColor.value).withOpacity(0.9),
@@ -60,65 +60,51 @@ class AutoTabsRouterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appStateViewModal = Provider.of<AppStateViewModal>(context);
-    var ssvm = Provider.of<SettingStateViewModal>(context);
-
     return AutoTabsRouter(
       routes: [
         const HomeRoute(),
         LoginRoute(),
         const SettingRoute(),
+        const ProfileDashboardRoute()
       ],
       builder: (context, child, animation) {
         var tabsRouter = AutoTabsRouter.of(context);
-
+        tabsRouter.setActiveIndex(2);
         return Scaffold(
-          appBar: AppBar(actions: [
-            tabsRouter.activeIndex == 0
-                ? IconButton(
-                    onPressed: () {
-                      ssvm.setGridViewCount();
-                    },
-                    icon: ssvm.gridViewCount
-                        ? const Icon(FontAwesomeIcons.box)
-                        : const Icon(FontAwesomeIcons.borderAll),
-                  )
-                : tabsRouter.activeIndex == 1
-                    ? IconButton(
-                        onPressed: () {
-                          ssvm.setGridViewCount();
-                        },
-                        icon: const Icon(Icons.home))
-                    : IconButton(
-                        onPressed: () {
-                          ssvm.setGridViewCount();
-                        },
-                        icon: const Icon(Icons.home)),
-          ]),
-          drawer: appStateViewModal.authState.status == Status.initial
-              ? appDrawerLoggedOut(context, appStateViewModal)
-              : appDrawerLoggedIn(context, appStateViewModal),
-          body: FadeTransition(
-            opacity: animation,
-            child: child,
+          body: SafeArea(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: (index) {
-              tabsRouter.setActiveIndex(index);
-            },
-            items: const [
-              BottomNavigationBarItem(
-                label: 'Dashboard',
+          bottomNavigationBar: ConvexAppBar(
+            elevation: 10,
+            color: Theme.of(context).selectedRowColor,
+            activeColor: Theme.of(context).secondaryHeaderColor,
+            backgroundColor: Theme.of(context).bottomAppBarColor,
+            initialActiveIndex: tabsRouter.activeIndex,
+            onTap: (index) => tabsRouter.setActiveIndex(index),
+            items: [
+              const TabItem(
+                title: 'Dashboard',
                 icon: Icon(Icons.home),
               ),
-              BottomNavigationBarItem(
-                label: 'Login',
+              const TabItem(
+                title: 'Login',
                 icon: Icon(Icons.login),
               ),
-              BottomNavigationBarItem(
-                label: 'Settings',
+              const TabItem(
+                title: 'Settings',
                 icon: Icon(Icons.settings),
+              ),
+              TabItem(
+                title: tabsRouter.activeIndex == 3 ? 'Dishank' : 'Profile',
+                icon: tabsRouter.activeIndex == 3
+                    ? const CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://tinyjpg.com/images/social/website.jpg'),
+                      )
+                    : const Icon(LineIcons.user),
               ),
             ],
           ),

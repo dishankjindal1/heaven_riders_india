@@ -1,23 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:heaven_riders_india/modal/apis/api_response.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
 
 class BaseViewModal with ChangeNotifier {
-  final ApiResponse _viewState = ApiResponse.initial();
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  ApiResponse get viewState => _viewState;
+  Status _viewState = Status.initial;
+  Status get viewState => _viewState;
 
-  setviewState(Status status) {
-    _viewState.status = status;
+  setViewState(Status status) {
+    _viewState = status;
     notifyListeners();
   }
 
-  final ApiResponse _authState = ApiResponse.initial();
+  Status _authState = Status.initial;
+  Status get authState => _authState;
 
-  ApiResponse get authState => _authState;
-
-  setauthState(Status status) {
-    _authState.status = status;
+  setAuthState(Status status) {
+    _authState = status;
     notifyListeners();
   }
 }

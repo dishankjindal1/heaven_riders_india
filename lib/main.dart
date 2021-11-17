@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:heaven_riders_india/view_model/setting_state_view_modal.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
             theme: myAppThemeLight(),
             darkTheme: myAppThemeDark(),
             themeMode: ThemeMode.system,
+            localizationsDelegates: const [
+              FormBuilderLocalizations.delegate,
+            ],
           );
         }
         return const MaterialApp(

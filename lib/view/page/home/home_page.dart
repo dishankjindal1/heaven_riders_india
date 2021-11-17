@@ -25,34 +25,36 @@ class _HomePageState extends State<HomePage> {
     var asvm = Provider.of<AppStateViewModal>(context);
     var ssvm = Provider.of<SettingStateViewModal>(context);
     var router = AutoRouter.of(context);
-    return SmartRefresher(
-      enablePullDown: true,
-      enableTwoLevel: true,
-      header: const WaterDropHeader(),
-      controller: refreshController,
-      onRefresh: () async {
-        await asvm.getPackages();
-        refreshController.refreshCompleted();
-      },
-      onLoading: () {
-        refreshController.loadComplete();
-      },
-      child: GridView.builder(
-        itemCount: asvm.packageList.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: ssvm.gridViewCount ? 2 : 1),
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            router.push(
-              DisplayRoute(
-                imageList: asvm.imageListOfList[index],
-                packageData: asvm.packageList[index],
-              ),
-            );
-          },
-          child: CardView(
-            packageData: asvm.packageList[index],
-            imageList: asvm.imageListOfList[index],
+    return SafeArea(
+      child: SmartRefresher(
+        enablePullDown: true,
+        enableTwoLevel: true,
+        header: const WaterDropHeader(),
+        controller: refreshController,
+        onRefresh: () async {
+          await asvm.getPackages();
+          refreshController.refreshCompleted();
+        },
+        onLoading: () {
+          refreshController.loadComplete();
+        },
+        child: GridView.builder(
+          itemCount: asvm.packageList.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: ssvm.gridViewCount ? 2 : 1),
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () {
+              router.push(
+                DisplayRoute(
+                  imageList: asvm.imageListOfList[index],
+                  packageData: asvm.packageList[index],
+                ),
+              );
+            },
+            child: CardView(
+              packageData: asvm.packageList[index],
+              imageList: asvm.imageListOfList[index],
+            ),
           ),
         ),
       ),

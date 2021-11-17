@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 
-Stack advertOverlayBannerWidget(AppStateViewModal appStateViewModel) => Stack(
+Stack advertOverlayBannerWidget(AppStateViewModal avm) => Stack(
       fit: StackFit.expand,
       children: [
         const Image(
@@ -21,8 +21,7 @@ Stack advertOverlayBannerWidget(AppStateViewModal appStateViewModel) => Stack(
               radius: 21,
               backgroundColor: Colors.black,
               child: IconButton(
-                onPressed: () =>
-                    appStateViewModel.setviewState(Status.completed),
+                onPressed: () => avm.setViewState(Status.completed),
                 icon: const Icon(Icons.close),
               ),
             ),

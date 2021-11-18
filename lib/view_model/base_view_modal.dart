@@ -5,7 +5,7 @@ import 'package:heaven_riders_india/modal/utils/app_state.dart';
 class BaseViewModal with ChangeNotifier {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  Status _viewState = Status.initial;
+  Status _viewState = Status.ideal;
   Status get viewState => _viewState;
 
   setViewState(Status status) {
@@ -13,7 +13,7 @@ class BaseViewModal with ChangeNotifier {
     notifyListeners();
   }
 
-  Status _authState = Status.initial;
+  Status _authState = Status.ideal;
   Status get authState => _authState;
 
   setAuthState(Status status) {

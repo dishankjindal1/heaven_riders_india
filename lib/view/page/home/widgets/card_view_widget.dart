@@ -15,29 +15,50 @@ class CardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(8.0),
+      shape: Theme.of(context).cardTheme.shape,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Hero(
             tag: packageData.packageId,
-            child: CarouselSlider.builder(
-              itemCount: imageList.length,
-              itemBuilder: (context, imageIndex, pageIndex) => ClipRRect(
-                child: CachedNetworkImage(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+              child: CarouselSlider.builder(
+                itemCount: imageList.length,
+                itemBuilder: (context, imageIndex, pageIndex) =>
+                    CachedNetworkImage(
+                  width: 1920,
+                  fit: BoxFit.fitWidth,
                   imageUrl: imageList[imageIndex].image,
                   placeholder: (context, index) => const Placeholder(),
                 ),
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  // aspectRatio: 4 / 3,
+                  autoPlay: true,
+                ),
               ),
-              options: CarouselOptions(aspectRatio: 16 / 9, autoPlay: true),
             ),
           ),
-          Text(packageData.title),
-          const SizedBox(height: 2),
-          Text(
-            packageData.description,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 4,
+          Container(
+            padding: const EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
+            alignment: Alignment.center,
+            child: Text(
+              packageData.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline1!
+                  .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
+          // Text(
+          //   packageData.description,
+          //   overflow: TextOverflow.ellipsis,
+          //   maxLines: 4,
+          // ),
         ],
       ),
     );

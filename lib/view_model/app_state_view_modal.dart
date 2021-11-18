@@ -16,7 +16,7 @@ class AppStateViewModal extends BaseViewModal {
   List<List<ImageDataModal>> get imageListOfList => _imageListOfList;
 
   getPackages() async {
-    setViewState(Status.loading);
+    setViewState(Status.busy);
     _packageList =
         await _appRepository.getCollection(data: 'packages', item: '');
     _imageListOfList = List.generate(
@@ -33,7 +33,7 @@ class AppStateViewModal extends BaseViewModal {
     );
     notifyListeners();
     getListOfImages();
-    setViewState(Status.completed);
+    setViewState(Status.ideal);
   }
 
   getListOfImages() async {
@@ -48,16 +48,16 @@ class AppStateViewModal extends BaseViewModal {
   }
 
   phoneSignIn(String value) async {
-    setViewState(Status.loading);
+    setViewState(Status.busy);
     await _appRepository.signIn(SignInMethod.phone, value, app);
     // when the auth is fully complete
-    // setviewState(Status.completed);
+    // setviewState(Status.ideal);
   }
 
   signOut() async {
-    setViewState(Status.loading);
+    setViewState(Status.busy);
     await _appRepository.signOut(app);
     // when the auth is fully complete
-    // setviewState(Status.completed);
+    // setviewState(Status.ideal);
   }
 }

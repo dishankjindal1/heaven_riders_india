@@ -47,4 +47,21 @@ ThemeData myAppThemeDark() => ThemeData.dark().copyWith(
         ),
         overline: GoogleFonts.roboto().copyWith(fontSize: 10),
       ),
+      cardTheme: const CardTheme().copyWith(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      ),
+      colorScheme: ColorScheme(
+          primary: ThemeData.fallback().primaryColor,
+          primaryVariant: ThemeData.fallback().primaryColor,
+          secondary: ThemeData.fallback().primaryColor,
+          secondaryVariant: ThemeData.fallback().primaryColor,
+          surface: ThemeData.fallback().backgroundColor,
+          background: ThemeData.fallback().backgroundColor,
+          error: ThemeData.fallback().errorColor,
+          onPrimary: ThemeData.fallback().primaryColorDark,
+          onSecondary: ThemeData.fallback().primaryColorDark,
+          onSurface: ThemeData.fallback().backgroundColor,
+          onBackground: ThemeData.fallback().backgroundColor,
+          onError: ThemeData.fallback().errorColor,
+          brightness: Brightness.dark),
     );

@@ -6,12 +6,12 @@ class ApiResponse {
   Status status;
 
   ApiResponse.initial({this.message = 'App Starting...'})
-      : status = Status.initial;
+      : status = Status.ideal;
 
-  ApiResponse.loading({this.message = 'Loading....'}) : status = Status.loading;
+  ApiResponse.loading({this.message = 'Loading....'}) : status = Status.busy;
 
   ApiResponse.completed({this.message = 'Task Done...', this.data = ''})
-      : status = Status.completed;
+      : status = Status.ideal;
 
   ApiResponse.error({this.message = 'App Error... '}) : status = Status.error;
 

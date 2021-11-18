@@ -70,15 +70,15 @@ dependencies:
   form_builder_validators: any
   form_builder_extra_fields: any
 
-  # carousel slider
-  carousel_slider: any
-
   # Custom Refresh animation
   pull_to_refresh: any
 
   # Layout tools
   boxy: any
   convex_bottom_bar: any
+  expandable: any
+  carousel_slider: any
+
 
 dev_dependencies:
   flutter_test:
@@ -119,9 +119,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

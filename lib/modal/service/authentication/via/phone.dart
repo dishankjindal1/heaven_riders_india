@@ -12,28 +12,28 @@ class PhoneAuth extends AuthService {
       phoneNumber: phoneNumber,
       verificationCompleted: (phoneAuthCredential) async {
         await signin(phoneAuthCredential);
-        app.setViewState(Status.completed);
+        app.setViewState(Status.ideal);
       },
       verificationFailed: (verificationFailed) {
         PhoneAuthException(verificationFailed.code);
-        app.setViewState(Status.completed);
+        app.setViewState(Status.ideal);
       },
       codeSent: (verificationId, forceResendingToken) async {
         String smsCode = '111111';
         var credential = PhoneAuthProvider.credential(
             verificationId: verificationId, smsCode: smsCode);
         await signin(credential);
-        app.setViewState(Status.completed);
+        app.setViewState(Status.ideal);
       },
       codeAutoRetrievalTimeout: (verificationId) {
         // Please enter OTP Manually
-        app.setViewState(Status.completed);
+        app.setViewState(Status.ideal);
       },
     );
   }
 
   signOutFromPhone() async {
     await signout();
-    app.setViewState(Status.completed);
+    app.setViewState(Status.ideal);
   }
 }

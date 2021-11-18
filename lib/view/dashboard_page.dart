@@ -1,11 +1,11 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
 import 'package:heaven_riders_india/router/app_router.gr.dart';
-import 'package:heaven_riders_india/view/screen/advert_overlay_banner_widget.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
@@ -18,8 +18,6 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
   @override
   void initState() {
     super.initState();
@@ -36,16 +34,28 @@ class _DashboardPageState extends State<DashboardPage> {
     return Stack(
       children: [
         const AutoTabsRouterWidget(),
-        if (app.viewState == Status.initial)
-          Scaffold(
-            body: advertOverlayBannerWidget(app),
-          ),
-        if (app.viewState == Status.loading)
+        if (app.viewState == Status.busy)
           Scaffold(
             backgroundColor:
                 Color(Theme.of(context).primaryColor.value).withOpacity(0.9),
             body: const Center(
               child: CircularProgressIndicator(),
+            ),
+          ),
+        if (app.viewState == Status.error)
+          Scaffold(
+            backgroundColor:
+                Color(Theme.of(context).primaryColor.value).withOpacity(0.9),
+            body: const Center(
+              child: Text('Error Page'),
+            ),
+          ),
+        if (app.viewState == Status.advertisnment)
+          Scaffold(
+            backgroundColor:
+                Color(Theme.of(context).primaryColor.value).withOpacity(0.9),
+            body: const Center(
+              child: Text('Advertisnment Page'),
             ),
           ),
       ],
@@ -60,16 +70,16 @@ class AutoTabsRouterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var app = Provider.of<AppStateViewModal>(context);
+    app.app = app;
+
     return AutoTabsRouter(
-      routes: [
-        const HomeRoute(),
-        LoginRoute(),
-        const SettingRoute(),
-        const ProfileDashboardRoute()
+      routes: const [
+        HomeDashboardRoute(),
+        ProfileDashboardRoute(),
       ],
       builder: (context, child, animation) {
         var tabsRouter = AutoTabsRouter.of(context);
-        tabsRouter.setActiveIndex(2);
         return Scaffold(
           body: SafeArea(
             child: FadeTransition(
@@ -79,32 +89,31 @@ class AutoTabsRouterWidget extends StatelessWidget {
           ),
           bottomNavigationBar: ConvexAppBar(
             elevation: 10,
+            style: TabStyle.titled,
             color: Theme.of(context).selectedRowColor,
-            activeColor: Theme.of(context).secondaryHeaderColor,
+            activeColor: Theme.of(context).selectedRowColor,
             backgroundColor: Theme.of(context).bottomAppBarColor,
             initialActiveIndex: tabsRouter.activeIndex,
             onTap: (index) => tabsRouter.setActiveIndex(index),
             items: [
               const TabItem(
                 title: 'Dashboard',
-                icon: Icon(Icons.home),
-              ),
-              const TabItem(
-                title: 'Login',
-                icon: Icon(Icons.login),
-              ),
-              const TabItem(
-                title: 'Settings',
-                icon: Icon(Icons.settings),
+                icon: ImageIcon(
+                  AssetImage('assets/AppIcons/playstore.png'),
+                  color: Colors.black,
+                ),
               ),
               TabItem(
-                title: tabsRouter.activeIndex == 3 ? 'Dishank' : 'Profile',
-                icon: tabsRouter.activeIndex == 3
-                    ? const CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://tinyjpg.com/images/social/website.jpg'),
-                      )
-                    : const Icon(LineIcons.user),
+                title: tabsRouter.activeIndex == 1 ? 'Dishank' : 'Profile',
+                icon: StreamBuilder(
+                  stream: app.firebaseAuth.authStateChanges(),
+                  builder: (context, snapshot) => snapshot.hasData
+                      ? const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'https://tinyjpg.com/images/social/website.jpg'),
+                        )
+                      : const Icon(LineIcons.user),
+                ),
               ),
             ],
           ),

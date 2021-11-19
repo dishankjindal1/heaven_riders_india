@@ -41,11 +41,11 @@ jobs:
         with:
           serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: com.heaven_riders_india
-          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          releaseFiles: build/outputs/bundle/release/app-release.aab
           track: beta
           inAppUpdatePriority: 2
           userFraction: 0.33
           whatsNewDirectory: distribution/whatsnew
-          mappingFile: app/build/outputs/mapping/release/mapping.txt
+          mappingFile: build/outputs/mapping/release/mapping.txt
 
 

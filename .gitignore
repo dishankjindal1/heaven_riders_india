@@ -29,7 +29,11 @@
 .packages
 .pub-cache/
 .pub/
-/build/
+/build/**/*.*
+!/build/app/outputs/bundle/release/app-release.aab
+!/build/app/outputs/mapping/release/mapping.txt
+
+
 
 # Web related
 lib/generated_plugin_registrant.dart

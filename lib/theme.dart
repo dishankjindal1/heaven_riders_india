@@ -5,9 +5,9 @@ ThemeData myAppThemeLight() => ThemeData.light().copyWith(
       visualDensity: VisualDensity.compact,
       textTheme: TextTheme(
         headline1:
-            GoogleFonts.roboto().copyWith(fontSize: 24, color: Colors.black87),
+            GoogleFonts.roboto().copyWith(fontSize: 18, color: Colors.black87),
         headline2:
-            GoogleFonts.roboto().copyWith(fontSize: 22, color: Colors.black87),
+            GoogleFonts.roboto().copyWith(fontSize: 18, color: Colors.black87),
         subtitle1:
             GoogleFonts.roboto().copyWith(fontSize: 10, color: Colors.black87),
         subtitle2:
@@ -27,12 +27,18 @@ ThemeData myAppThemeLight() => ThemeData.light().copyWith(
 
 ThemeData myAppThemeDark() => ThemeData.dark().copyWith(
       textTheme: TextTheme(
-        headline1: GoogleFonts.roboto().copyWith(fontSize: 24),
-        headline2: GoogleFonts.roboto().copyWith(fontSize: 22),
+        headline1: GoogleFonts.roboto().copyWith(
+            fontSize: 18, letterSpacing: 0.5, overflow: TextOverflow.fade),
+        headline2: GoogleFonts.roboto().copyWith(
+            fontSize: 17, letterSpacing: 0.5, overflow: TextOverflow.fade),
+        headline3: GoogleFonts.roboto().copyWith(
+            fontSize: 16, letterSpacing: 0.5, overflow: TextOverflow.fade),
         subtitle1: GoogleFonts.roboto().copyWith(fontSize: 10),
         subtitle2: GoogleFonts.roboto().copyWith(fontSize: 8),
-        bodyText1: GoogleFonts.roboto().copyWith(fontSize: 12),
-        bodyText2: GoogleFonts.roboto().copyWith(fontSize: 11),
+        bodyText1: GoogleFonts.roboto().copyWith(
+            fontSize: 12, letterSpacing: 0.5, overflow: TextOverflow.fade),
+        bodyText2: GoogleFonts.roboto().copyWith(
+            fontSize: 11, letterSpacing: 0.5, overflow: TextOverflow.fade),
         caption: GoogleFonts.roboto().copyWith(fontSize: 9),
         button: GoogleFonts.roboto().copyWith(
           fontSize: 20,
@@ -41,4 +47,21 @@ ThemeData myAppThemeDark() => ThemeData.dark().copyWith(
         ),
         overline: GoogleFonts.roboto().copyWith(fontSize: 10),
       ),
+      cardTheme: const CardTheme().copyWith(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      ),
+      colorScheme: ColorScheme(
+          primary: ThemeData.fallback().primaryColor,
+          primaryVariant: ThemeData.fallback().primaryColor,
+          secondary: ThemeData.fallback().primaryColor,
+          secondaryVariant: ThemeData.fallback().primaryColor,
+          surface: ThemeData.fallback().backgroundColor,
+          background: ThemeData.fallback().backgroundColor,
+          error: ThemeData.fallback().errorColor,
+          onPrimary: ThemeData.fallback().primaryColorDark,
+          onSecondary: ThemeData.fallback().primaryColorDark,
+          onSurface: ThemeData.fallback().backgroundColor,
+          onBackground: ThemeData.fallback().backgroundColor,
+          onError: ThemeData.fallback().errorColor,
+          brightness: Brightness.dark),
     );

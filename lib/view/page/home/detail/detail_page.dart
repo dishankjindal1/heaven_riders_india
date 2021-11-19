@@ -166,8 +166,9 @@ class DetailPage extends StatelessWidget {
                       Theme.of(context).primaryColor)),
               onPressed: () {
                 showModalBottomSheet(
+                    isScrollControlled: true,
                     context: context,
-                    builder: (context) => const BottomModalSheet());
+                    builder: (context) => BottomModalSheet(data: packageData));
               },
               child: Container(
                 alignment: Alignment.center,

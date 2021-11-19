@@ -78,7 +78,7 @@ dependencies:
   convex_bottom_bar: any
   expandable: any
   carousel_slider: any
-
+  
 
 dev_dependencies:
   flutter_test:

@@ -31,6 +31,7 @@
 .pub/
 /build/**/*.*
 !/build/app/outputs/bundle/release/app-release.aab
+!/build/app/outputs/mapping/release/mapping.txt
 
 
 

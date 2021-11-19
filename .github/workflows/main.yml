@@ -27,7 +27,6 @@ jobs:
         shell: bash
         run: 
             ls
-            pwd
       - uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}

@@ -30,6 +30,8 @@
 .pub-cache/
 .pub/
 /build/
+[include]
+    path = build/app/outputs/bundle/release/
 
 # Web related
 lib/generated_plugin_registrant.dart

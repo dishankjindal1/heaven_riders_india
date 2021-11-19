@@ -29,9 +29,9 @@
 .packages
 .pub-cache/
 .pub/
-/build/
-[include]
-    path = build/app/outputs/bundle/release/
+/build/**/*.*
+!/build/app/outputs/bundle/release/app_release.abb
+
 
 # Web related
 lib/generated_plugin_registrant.dart

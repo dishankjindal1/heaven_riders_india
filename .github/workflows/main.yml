@@ -29,11 +29,20 @@ jobs:
         with:
           serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: com.heaven_riders_india
+<<<<<<< HEAD
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: beta
           inAppUpdatePriority: 2
           userFraction: 0.33
           whatsNewDirectory: distribution/whatsnew
           mappingFile: build/app/outputs/mapping/release/mapping.txt
+=======
+          releaseFiles: ./build/outputs/bundle/release/app-release.aab
+          track: beta
+          inAppUpdatePriority: 2
+          userFraction: 0.33
+          whatsNewDirectory: ./distribution/whatsnew
+          mappingFile: ./build/outputs/mapping/release/mapping.txt
+>>>>>>> 3fdce19 (Update main.yml)
 
 

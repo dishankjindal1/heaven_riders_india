@@ -26,10 +26,11 @@ class AppRepository extends BaseConfig {
     return UserDataModal.fromJson(res.data);
   }
 
-  signIn(SignInMethod method, dynamic data, AppStateViewModal app) async {
+  signIn(SignInMethod method, List<dynamic> data, AppStateViewModal app) async {
     switch (method) {
       case SignInMethod.phone:
-        return await PhoneAuth(app).signInWithPhone(data as String);
+        return await PhoneAuth(app)
+            .signInWithPhone(data[0] as String, [data[1]]);
       case SignInMethod.google:
         break;
       default:

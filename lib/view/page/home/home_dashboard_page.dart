@@ -5,7 +5,6 @@ import 'package:heaven_riders_india/router/app_router.gr.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import 'widgets/card_view_widget.dart';
 
 class HomeDashboardPage extends StatefulWidget {
@@ -23,6 +22,7 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
   Widget build(BuildContext context) {
     var app = Provider.of<AppStateViewModal>(context);
     app.app = app;
+    var orientation = MediaQuery.of(context).orientation;
     var router = AutoRouter.of(context);
     return SafeArea(
       child: SmartRefresher(
@@ -37,8 +37,9 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
         onLoading: () => refreshController.loadComplete(),
         child: GridView.builder(
           itemCount: app.packageList.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 4 / 2.75, crossAxisCount: 1),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 4 / 2.75,
+              crossAxisCount: orientation == Orientation.portrait ? 1 : 2),
           itemBuilder: (context, index) => GestureDetector(
             onTap: () => router.push(DetailRoute(
                 imageList: app.imageListOfList[index],

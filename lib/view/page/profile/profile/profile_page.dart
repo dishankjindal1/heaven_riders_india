@@ -55,7 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         const Spacer(),
                         const Spacer(),
                         Text(
-                          'Dishank Jindal sdfsdfsd'.toUpperCase(),
+                          app.firebaseAuth.currentUser!.phoneNumber!
+                              .toUpperCase(),
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.button!.copyWith(
                                 fontSize: size.width / 50,
@@ -99,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        'SignOut'.toUpperCase(),
+                        'Setting1'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 50,
                               wordSpacing: 5,
@@ -120,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        'SignOut'.toUpperCase(),
+                        'Setting2'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 50,
                               wordSpacing: 5,
@@ -141,7 +142,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        'SignOut'.toUpperCase(),
+                        'Setting3'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 50,
                               wordSpacing: 5,
@@ -160,7 +161,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: size.width / 2,
                     color: Colors.black26,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        app.signOut();
+                      },
                       child: Text(
                         'SignOut'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
@@ -187,6 +190,8 @@ class ProfilePagePotraitMode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var app = Provider.of<AppStateViewModal>(context);
+    app.app = app;
     var size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.all(5),
@@ -227,7 +232,8 @@ class ProfilePagePotraitMode extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: Text(
-                        'Dishank Jindal sdfsdfsd'.toUpperCase(),
+                        app.firebaseAuth.currentUser!.phoneNumber!
+                            .toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 20,
                               wordSpacing: 5,
@@ -264,7 +270,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: Text(
-                  'SignOut'.toUpperCase(),
+                  'Setting1'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
                         fontSize: 25,
                         wordSpacing: 5,
@@ -285,7 +291,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: Text(
-                  'SignOut'.toUpperCase(),
+                  'Setting2'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
                         fontSize: 25,
                         wordSpacing: 5,
@@ -306,7 +312,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: Text(
-                  'SignOut'.toUpperCase(),
+                  'Setting3'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
                         fontSize: 25,
                         wordSpacing: 5,
@@ -325,7 +331,9 @@ class ProfilePagePotraitMode extends StatelessWidget {
               width: size.width,
               color: Colors.black26,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  app.signOut();
+                },
                 child: Text(
                   'SignOut'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(

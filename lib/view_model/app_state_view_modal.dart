@@ -47,9 +47,9 @@ class AppStateViewModal extends BaseViewModal {
     }
   }
 
-  phoneSignIn(String value) async {
+  phoneSignIn(String value, Function(String, int?) codeSent) async {
     setViewState(Status.busy);
-    await _appRepository.signIn(SignInMethod.phone, value, app);
+    await _appRepository.signIn(SignInMethod.phone, [value, codeSent], app);
     // when the auth is fully complete
     // setviewState(Status.ideal);
   }

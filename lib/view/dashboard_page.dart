@@ -96,11 +96,11 @@ class AutoTabsRouterWidget extends StatelessWidget {
             initialActiveIndex: tabsRouter.activeIndex,
             onTap: (index) => tabsRouter.setActiveIndex(index),
             items: [
-              const TabItem(
+              TabItem(
                 title: 'Dashboard',
                 icon: ImageIcon(
-                  AssetImage('assets/AppIcons/playstore.png'),
-                  color: Colors.black,
+                  const AssetImage('assets/AppIcons/playstore.png'),
+                  color: Theme.of(context).primaryColorLight,
                 ),
               ),
               TabItem(
@@ -112,7 +112,8 @@ class AutoTabsRouterWidget extends StatelessWidget {
                           backgroundImage: NetworkImage(
                               'https://tinyjpg.com/images/social/website.jpg'),
                         )
-                      : const Icon(LineIcons.user),
+                      : Icon(LineIcons.user,
+                          color: Theme.of(context).primaryColorLight),
                 ),
               ),
             ],

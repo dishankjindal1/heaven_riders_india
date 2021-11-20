@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:heaven_riders_india/main.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:provider/provider.dart';
 
@@ -56,8 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const Spacer(),
                         const Spacer(),
                         Text(
-                          app.firebaseAuth.currentUser!.phoneNumber!
-                              .toUpperCase(),
+                          'Dishank Jindal sdfsdfsd'.toUpperCase(),
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.button!.copyWith(
                                 fontSize: size.width / 50,
@@ -101,7 +99,23 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        'Setting1'.toUpperCase(),
+                        'SignOut'.toUpperCase(),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    height: 50,
+                    width: size.width / 2,
+                    color: Colors.black26,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'SignOut'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 50,
                               wordSpacing: 5,
@@ -122,7 +136,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        'Setting2'.toUpperCase(),
+                        'SignOut'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 50,
                               wordSpacing: 5,
@@ -142,29 +156,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: Colors.black26,
                     child: TextButton(
                       onPressed: () {},
-                      child: Text(
-                        'Setting3'.toUpperCase(),
-                        style: Theme.of(context).textTheme.button!.copyWith(
-                              fontSize: size.width / 50,
-                              wordSpacing: 5,
-                              letterSpacing: 5,
-                            ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    height: 50,
-                    width: size.width / 2,
-                    color: Colors.black26,
-                    child: TextButton(
-                      onPressed: () {
-                        app.signOut();
-                      },
                       child: Text(
                         'SignOut'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
@@ -191,8 +182,6 @@ class ProfilePagePotraitMode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var app = Provider.of<AppStateViewModal>(context);
-    app.app = app;
     var size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.all(5),
@@ -233,8 +222,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: Text(
-                        app.firebaseAuth.currentUser!.phoneNumber!
-                            .toUpperCase(),
+                        'Dishank Jindal sdfsdfsd'.toUpperCase(),
                         style: Theme.of(context).textTheme.button!.copyWith(
                               fontSize: size.width / 20,
                               wordSpacing: 5,
@@ -271,7 +259,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: Text(
-                  'Setting1'.toUpperCase(),
+                  'SignOut'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
                         fontSize: 25,
                         wordSpacing: 5,
@@ -292,7 +280,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 child: Text(
-                  'Setting2'.toUpperCase(),
+                  'SignOut'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
                         fontSize: 25,
                         wordSpacing: 5,
@@ -311,10 +299,9 @@ class ProfilePagePotraitMode extends StatelessWidget {
               width: size.width,
               color: Colors.black26,
               child: TextButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: Text(
-                  'Setting3'.toUpperCase(),
+                  'SignOut'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
                         fontSize: 25,
                         wordSpacing: 5,
@@ -333,10 +320,7 @@ class ProfilePagePotraitMode extends StatelessWidget {
               width: size.width,
               color: Colors.black26,
               child: TextButton(
-                onPressed: () async {
-                  await app.signOut();
-                  RestartWidget.refreshApp(context);
-                },
+                onPressed: () {},
                 child: Text(
                   'SignOut'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(

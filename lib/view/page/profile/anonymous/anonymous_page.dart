@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:heaven_riders_india/main.dart';
 import 'package:heaven_riders_india/modal/utils/app_state.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:provider/provider.dart';
@@ -154,6 +155,7 @@ class _OtpScreenState extends State<OtpScreen> with CodeAutoFill {
                 var credential = PhoneAuthProvider.credential(
                     verificationId: widget.data, smsCode: otpCode!);
                 await app.firebaseAuth.signInWithCredential(credential);
+                RestartWidget.refreshApp(context);
                 Navigator.pop(context);
               },
               child: Container(

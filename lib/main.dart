@@ -30,30 +30,63 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _init,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'Heaven Riders India',
-            routeInformationParser: _appRouter.defaultRouteParser(),
-            routerDelegate: _appRouter.delegate(),
-            routeInformationProvider: _appRouter.routeInfoProvider(),
-            theme: myAppThemeLight(),
-            darkTheme: myAppThemeDark(),
-            themeMode: ThemeMode.system,
-            localizationsDelegates: const [
-              FormBuilderLocalizations.delegate,
-            ],
+    return RestartWidget(
+      child: FutureBuilder(
+        future: _init,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              title: 'Heaven Riders India',
+              routeInformationParser: _appRouter.defaultRouteParser(),
+              routerDelegate: _appRouter.delegate(),
+              routeInformationProvider: _appRouter.routeInfoProvider(),
+              theme: myAppThemeLight(),
+              darkTheme: myAppThemeDark(),
+              themeMode: ThemeMode.system,
+              localizationsDelegates: const [
+                FormBuilderLocalizations.delegate,
+              ],
+            );
+          }
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            ),
           );
-        }
-        return const MaterialApp(
-          home: Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          ),
-        );
-      },
+        },
+      ),
+    );
+  }
+}
+
+class RestartWidget extends StatefulWidget {
+  const RestartWidget({Key? key, required this.child}) : super(key: key);
+
+  final Widget child;
+
+  static void refreshApp(BuildContext context) {
+    context.findAncestorStateOfType<_RestartWidgetState>()!.restartApp();
+  }
+
+  @override
+  _RestartWidgetState createState() => _RestartWidgetState();
+}
+
+class _RestartWidgetState extends State<RestartWidget> {
+  Key key = UniqueKey();
+
+  restartApp() {
+    setState(() {
+      key = UniqueKey();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(
+      key: key,
+      child: widget.child,
     );
   }
 }

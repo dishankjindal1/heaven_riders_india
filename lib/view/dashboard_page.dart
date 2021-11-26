@@ -74,9 +74,10 @@ class AutoTabsRouterWidget extends StatelessWidget {
     app.app = app;
 
     return AutoTabsRouter(
-      routes: const [
-        HomeDashboardRoute(),
-        ProfileDashboardRoute(),
+      routes: [
+        const HomeDashboardRoute(),
+        if (app.isAdmin) const AdminAddDashboardRoute(),
+        const ProfileDashboardRoute(),
       ],
       builder: (context, child, animation) {
         var tabsRouter = AutoTabsRouter.of(context);
@@ -103,6 +104,12 @@ class AutoTabsRouterWidget extends StatelessWidget {
                   color: Theme.of(context).primaryColorLight,
                 ),
               ),
+              if (app.isAdmin)
+                TabItem(
+                  title: 'Add post',
+                  icon: Icon(Icons.add,
+                      color: Theme.of(context).primaryColorLight),
+                ),
               TabItem(
                 title: tabsRouter.activeIndex == 1 ? 'Dishank' : 'Profile',
                 icon: StreamBuilder(

@@ -15,6 +15,9 @@ class AppStateViewModal extends BaseViewModal {
   List<List<ImageDataModal>> _imageListOfList = [[]];
   List<List<ImageDataModal>> get imageListOfList => _imageListOfList;
 
+  bool _isAdmin = false;
+  bool get isAdmin => _isAdmin;
+
   getPackages() async {
     setViewState(Status.busy);
     _packageList =
@@ -31,6 +34,11 @@ class AppStateViewModal extends BaseViewModal {
         growable: true,
       ),
     );
+
+    // We will replace it with local storage in newer version
+    _isAdmin = (firebaseAuth.currentUser?.phoneNumber ?? "no number") ==
+        "+919803050043";
+
     notifyListeners();
     getListOfImages();
     setViewState(Status.ideal);
@@ -50,6 +58,9 @@ class AppStateViewModal extends BaseViewModal {
   phoneSignIn(String value, Function(String, int?) codeSent) async {
     setViewState(Status.busy);
     await _appRepository.signIn(SignInMethod.phone, [value, codeSent], app);
+    _isAdmin = (firebaseAuth.currentUser?.phoneNumber ?? "no number") ==
+        "+919803050043";
+    notifyListeners();
     // when the auth is fully complete
     // setviewState(Status.ideal);
   }
@@ -57,6 +68,9 @@ class AppStateViewModal extends BaseViewModal {
   signOut() async {
     setViewState(Status.busy);
     await _appRepository.signOut(app);
+    _isAdmin = false;
+    notifyListeners();
+
     // when the auth is fully complete
     // setviewState(Status.ideal);
   }

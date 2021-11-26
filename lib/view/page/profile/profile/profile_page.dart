@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:heaven_riders_india/main.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:provider/provider.dart';
 
@@ -310,7 +311,8 @@ class ProfilePagePotraitMode extends StatelessWidget {
               width: size.width,
               color: Colors.black26,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                },
                 child: Text(
                   'Setting3'.toUpperCase(),
                   style: Theme.of(context).textTheme.button!.copyWith(
@@ -331,8 +333,9 @@ class ProfilePagePotraitMode extends StatelessWidget {
               width: size.width,
               color: Colors.black26,
               child: TextButton(
-                onPressed: () {
-                  app.signOut();
+                onPressed: () async {
+                  await app.signOut();
+                  RestartWidget.refreshApp(context);
                 },
                 child: Text(
                   'SignOut'.toUpperCase(),

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:heaven_riders_india/main.dart';
 import 'package:heaven_riders_india/router/app_router.gr.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:provider/provider.dart';

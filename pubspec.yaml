@@ -80,6 +80,11 @@ dependencies:
   flutter_form_builder: any
   form_builder_validators: any
   form_builder_extra_fields: any
+  form_builder_image_picker: any
+  flutter_touch_spin: any
+  # For multiple Date selection at once
+  syncfusion_flutter_datepicker: any
+
 
   # Custom Refresh animation
   pull_to_refresh: any
@@ -90,7 +95,6 @@ dependencies:
   expandable: any
   carousel_slider: any
   
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

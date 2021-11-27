@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/dishankjindal/Documents/projectro/heaven_riders_india/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
+        "source": "/Users/dishankjindal/.gradle/caches/transforms-3/8fda51b16292a49176e177ce31ff408b/transformed/core-1.1.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/dishankjindal/Documents/projectro/heaven_riders_india/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/drawable/notification_bg.xml",
+        "source": "/Users/dishankjindal/.gradle/caches/transforms-3/8fda51b16292a49176e177ce31ff408b/transformed/core-1.1.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/dishankjindal/Documents/projectro/heaven_riders_india/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/Users/dishankjindal/.gradle/caches/transforms-3/8fda51b16292a49176e177ce31ff408b/transformed/core-1.1.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/dishankjindal/Documents/projectro/heaven_riders_india/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/Users/dishankjindal/.gradle/caches/transforms-3/8fda51b16292a49176e177ce31ff408b/transformed/core-1.1.0/res/drawable/notification_icon_background.xml"
+    }
+]

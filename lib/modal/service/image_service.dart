@@ -16,16 +16,6 @@ class ImageService extends BaseConfig {
       } on DioError {
         throw Exception('Image not found');
       }
-      // switch (res.statusCode) {
-      //   case 200:
-      //     return (res.data as List).map((e) => _fetch(e)).toList();
-
-      //   case 404:
-      //     throw Exception('Image not found');
-      //   default:
-      //     throw Exception(
-      //         'There is some network problem with the request : ${res.statusCode}');
-      // }
     });
   }
 }

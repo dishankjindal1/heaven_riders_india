@@ -74,4 +74,12 @@ class AppStateViewModal extends BaseViewModal {
     // when the auth is fully complete
     // setviewState(Status.ideal);
   }
+
+  checkAuthState() async {
+    setViewState(Status.busy);
+    if (firebaseAuth.currentUser != null) {
+      _isAdmin = true;
+    }
+    setViewState(Status.ideal);
+  }
 }

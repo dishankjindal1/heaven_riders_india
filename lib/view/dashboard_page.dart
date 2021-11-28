@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +22,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       Provider.of<AppStateViewModal>(context, listen: false).getPackages();
+      Provider.of<AppStateViewModal>(context, listen: false).checkAuthState();
     });
   }
 
@@ -63,10 +62,29 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 }
 
-class AutoTabsRouterWidget extends StatelessWidget {
+class AutoTabsRouterWidget extends StatefulWidget {
   const AutoTabsRouterWidget({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<AutoTabsRouterWidget> createState() => _AutoTabsRouterWidgetState();
+}
+
+class _AutoTabsRouterWidgetState extends State<AutoTabsRouterWidget> {
+  late TabsRouter tabsRouter;
+  bool _isAdmin = false;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      if (Provider.of<AppStateViewModal>(context, listen: false).isAdmin) {
+        _isAdmin = true;
+        tabsRouter.setActiveIndex(0);
+        setState(() {});
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +94,11 @@ class AutoTabsRouterWidget extends StatelessWidget {
     return AutoTabsRouter(
       routes: [
         const HomeDashboardRoute(),
-        if (app.isAdmin) const AdminAddDashboardRoute(),
+        if (_isAdmin) const AdminAddDashboardRoute(),
         const ProfileDashboardRoute(),
       ],
       builder: (context, child, animation) {
-        var tabsRouter = AutoTabsRouter.of(context);
+        tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
           body: SafeArea(
             child: FadeTransition(
@@ -100,11 +118,11 @@ class AutoTabsRouterWidget extends StatelessWidget {
               TabItem(
                 title: 'Dashboard',
                 icon: ImageIcon(
-                  const AssetImage('assets/AppIcons/playstore.png'),
+                  const AssetImage('assets/app_icons/playstore.png'),
                   color: Theme.of(context).primaryColorLight,
                 ),
               ),
-              if (app.isAdmin)
+              if (_isAdmin)
                 TabItem(
                   title: 'Add post',
                   icon: Icon(Icons.add,

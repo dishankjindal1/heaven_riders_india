@@ -19,7 +19,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       Provider.of<AppStateViewModal>(context, listen: false).getPackages();
       Provider.of<AppStateViewModal>(context, listen: false).checkAuthState();
@@ -129,7 +128,7 @@ class _AutoTabsRouterWidgetState extends State<AutoTabsRouterWidget> {
                       color: Theme.of(context).primaryColorLight),
                 ),
               TabItem(
-                title: tabsRouter.activeIndex == 1 ? 'Dishank' : 'Profile',
+                title: app.isLoggedStatus ? app.getCurrentUserName() : 'Profile',
                 icon: StreamBuilder(
                   stream: app.firebaseAuth.authStateChanges(),
                   builder: (context, snapshot) => snapshot.hasData

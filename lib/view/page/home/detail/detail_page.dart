@@ -27,22 +27,27 @@ class DetailPage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Hero(
-                  tag: packageData.packageId,
-                  child: CarouselSlider.builder(
-                    itemCount: imageList.length,
-                    itemBuilder: (context, imageIndex, pageIndex) => ClipRRect(
-                      child: CachedNetworkImage(
-                        width: 1920,
-                        height: 1080,
-                        fit: BoxFit.fitWidth,
-                        imageUrl: imageList[imageIndex].image,
-                        placeholder: (context, text) => const Placeholder(),
+                SizedBox(
+                  width: size.width,
+                  height: size.width,
+                  child: Hero(
+                    tag: packageData.packageId,
+                    child: CarouselSlider.builder(
+                      itemCount: imageList.length,
+                      itemBuilder: (context, imageIndex, pageIndex) =>
+                          ClipRRect(
+                        child: CachedNetworkImage(
+                          width: 1920,
+                          height: 1920,
+                          fit: BoxFit.fill,
+                          imageUrl: imageList[imageIndex].image,
+                          placeholder: (context, text) => const Placeholder(),
+                        ),
                       ),
-                    ),
-                    options: CarouselOptions(
-                      viewportFraction: 1,
-                      autoPlay: true,
+                      options: CarouselOptions(
+                        viewportFraction: 1,
+                        autoPlay: true,
+                      ),
                     ),
                   ),
                 ),

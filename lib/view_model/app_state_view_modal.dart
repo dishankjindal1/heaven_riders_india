@@ -18,6 +18,10 @@ class AppStateViewModal extends BaseViewModal {
   bool _isAdmin = false;
   bool get isAdmin => _isAdmin;
 
+    bool _isLoggedStatus = false;
+  bool get isLoggedStatus => _isLoggedStatus;
+
+
   getPackages() async {
     setViewState(Status.busy);
     _packageList =
@@ -78,8 +82,17 @@ class AppStateViewModal extends BaseViewModal {
   checkAuthState() async {
     setViewState(Status.busy);
     if (firebaseAuth.currentUser != null) {
+      if(firebaseAuth.currentUser!.phoneNumber == '+919803050043') {
       _isAdmin = true;
+      }
+      _isLoggedStatus = true;
     }
+    notifyListeners();
     setViewState(Status.ideal);
   }
+
+  getCurrentUserName() {
+    return firebaseAuth.currentUser?.displayName ?? 'Edit Name';
+  }
+
 }

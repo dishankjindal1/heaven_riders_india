@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:926770532745:android:e33c81b8af5787de2d9158",
         "android_client_info": {
-          "package_name": "com.projectro.heaven_riders_india"
+          "package_name": "com.heaven_riders_india"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "926770532745-rqi3grcciqpfnurnicr6i59di64tcav3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.projectro.heaven_riders_india",
+            "package_name": "com.heaven_riders_india",
             "certificate_hash": "394e6fe438775205ac67b9468934774504cb0814"
           }
         },

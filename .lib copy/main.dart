@@ -6,7 +6,7 @@ import 'bloc_observer.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   BlocOverrides.runZoned(
-    () => runApp(const CustomBlocProviders()),
+    () => const CustomBlocProviders(),
     blocObserver: AppBlocObserver(),
   );
 }

@@ -15,8 +15,15 @@ dependencies:
   # Icons Packages
   cupertino_icons: any
 
+  # Look anf Feel
+  google_fonts: any
+
   # Network Http
   dio: any
+
+  # Bloc State Management
+  bloc: any
+  flutter_bloc: any
 
   
 dev_dependencies:

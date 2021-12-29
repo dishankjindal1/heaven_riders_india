@@ -1,44 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-ThemeData myAppThemeLight() => ThemeData.light().copyWith(
-      visualDensity: VisualDensity.compact,
-      textTheme: TextTheme(
-        headline1:
-            GoogleFonts.roboto().copyWith(fontSize: 18, color: Colors.black87),
-        headline2:
-            GoogleFonts.roboto().copyWith(fontSize: 18, color: Colors.black87),
-        subtitle1:
-            GoogleFonts.roboto().copyWith(fontSize: 10, color: Colors.black87),
-        subtitle2:
-            GoogleFonts.roboto().copyWith(fontSize: 8, color: Colors.black87),
-        bodyText1:
-            GoogleFonts.roboto().copyWith(fontSize: 14, color: Colors.black87),
-        bodyText2:
-            GoogleFonts.roboto().copyWith(fontSize: 11, color: Colors.black87),
-        caption:
-            GoogleFonts.roboto().copyWith(fontSize: 9, color: Colors.black87),
-        button: GoogleFonts.roboto()
-            .copyWith(fontSize: 16, letterSpacing: 0.5, color: Colors.black87),
-        overline:
-            GoogleFonts.roboto().copyWith(fontSize: 10, color: Colors.black87),
-      ),
-    );
-
-ThemeData myAppThemeDark() => ThemeData.dark().copyWith(
+ThemeData myAppTheme() => ThemeData(
       textTheme: TextTheme(
         headline1: GoogleFonts.roboto().copyWith(
-            fontSize: 18, letterSpacing: 0.5, overflow: TextOverflow.fade),
+          fontSize: 18,
+          letterSpacing: 0.5,
+          overflow: TextOverflow.fade,
+        ),
         headline2: GoogleFonts.roboto().copyWith(
-            fontSize: 17, letterSpacing: 0.5, overflow: TextOverflow.fade),
+          fontSize: 17,
+          letterSpacing: 0.5,
+          overflow: TextOverflow.fade,
+        ),
         headline3: GoogleFonts.roboto().copyWith(
-            fontSize: 16, letterSpacing: 0.5, overflow: TextOverflow.fade),
+          fontSize: 16,
+          letterSpacing: 0.5,
+          overflow: TextOverflow.fade,
+        ),
         subtitle1: GoogleFonts.roboto().copyWith(fontSize: 10),
         subtitle2: GoogleFonts.roboto().copyWith(fontSize: 8),
         bodyText1: GoogleFonts.roboto().copyWith(
-            fontSize: 12, letterSpacing: 0.5, overflow: TextOverflow.fade),
+          fontSize: 12,
+          letterSpacing: 0.5,
+          overflow: TextOverflow.fade,
+        ),
         bodyText2: GoogleFonts.roboto().copyWith(
-            fontSize: 11, letterSpacing: 0.5, overflow: TextOverflow.fade),
+          fontSize: 11,
+          letterSpacing: 0.5,
+          overflow: TextOverflow.fade,
+        ),
         caption: GoogleFonts.roboto().copyWith(fontSize: 9),
         button: GoogleFonts.roboto().copyWith(
           fontSize: 20,
@@ -50,18 +41,26 @@ ThemeData myAppThemeDark() => ThemeData.dark().copyWith(
       cardTheme: const CardTheme().copyWith(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
-      colorScheme: ColorScheme(
-          primary: ThemeData.fallback().primaryColor,
-          primaryVariant: ThemeData.fallback().primaryColor,
-          secondary: ThemeData.fallback().primaryColor,
-          secondaryVariant: ThemeData.fallback().primaryColor,
-          surface: ThemeData.fallback().backgroundColor,
-          background: ThemeData.fallback().backgroundColor,
-          error: ThemeData.fallback().errorColor,
-          onPrimary: ThemeData.fallback().primaryColorDark,
-          onSecondary: ThemeData.fallback().primaryColorDark,
-          onSurface: ThemeData.fallback().backgroundColor,
-          onBackground: ThemeData.fallback().backgroundColor,
-          onError: ThemeData.fallback().errorColor,
-          brightness: Brightness.dark),
+      appBarTheme: const AppBarTheme().copyWith(
+        centerTitle: true,
+        backgroundColor: const Color(0xFF021323), // Black - 1
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData().copyWith(
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        backgroundColor: const Color(0xFF021323),
+        selectedIconTheme: const IconThemeData().copyWith(
+          color: const Color(0xFFF18228), // Orange 1
+          size: 24,
+        ),
+        selectedLabelStyle: const TextStyle().copyWith(
+          fontSize: 0,
+        ),
+        unselectedIconTheme: const IconThemeData().copyWith(
+          color: const Color(0xFFEFEFEF), // White 1
+        ),
+        unselectedLabelStyle: const TextStyle().copyWith(
+          fontSize: 0,
+        ),
+      ),
     );

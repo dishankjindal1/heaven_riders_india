@@ -1,4 +1,4 @@
-class CustomException implements Exception {
+abstract class CustomException implements Exception {
   String? prefix;
   String? message;
   CustomException(this.prefix, this.message);

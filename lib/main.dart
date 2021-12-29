@@ -4,7 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:heaven_riders_india/view_model/app_state_view_modal.dart';
 import 'package:heaven_riders_india/view_model/setting_state_view_modal.dart';
 import 'package:provider/provider.dart';
-import 'theme.dart';
+import 'theme/theme.dart';
 import 'router/app_router.gr.dart';
 
 void main() {

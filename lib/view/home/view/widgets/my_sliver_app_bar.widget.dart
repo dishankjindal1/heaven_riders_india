@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:heaven_riders_india/view/home/view/widgets/my_flexible_space_bar.widget.dart';
 
 class MySliverAppBar extends StatelessWidget {

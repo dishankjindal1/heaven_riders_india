@@ -7,12 +7,15 @@ class MyCard extends StatefulWidget {
   const MyCard(
       {this.odd = const Color.fromARGB(50, 200, 200, 200),
       required Object data,
+      required VoidCallback onTap,
       Key? key})
-      : _data = data,
+      : cardData = data,
+        onTapCallback = onTap,
         super(key: key);
 
   final Color odd;
-  final Object _data;
+  final Object cardData;
+  final VoidCallback onTapCallback;
 
   @override
   State<MyCard> createState() => _MyCardState();
@@ -57,10 +60,12 @@ class _MyCardState extends State<MyCard> {
                     child: PageView(
                       controller: _imageController,
                       children: [1, 2, 3, 4, 5]
-                          .map((e) => Image.asset(
-                                'assets/images/bg/img.jpeg',
-                                fit: BoxFit.cover,
-                              ))
+                          .map(
+                            (e) => Image.asset(
+                              'assets/images/bg/img.jpeg',
+                              fit: BoxFit.cover,
+                            ),
+                          )
                           .toList(),
                     ),
                   ),
@@ -108,21 +113,35 @@ class _MyCardState extends State<MyCard> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Kedarkantha Trek',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
+                  GestureDetector(
+                    onTap: widget.onTapCallback,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Kedarkantha Trek',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline1
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                          const SizedBox(width: 25),
+                          IconButton(
+                            padding: const EdgeInsets.only(left: 20),
+                            onPressed: widget.onTapCallback,
+                            icon: const CircleAvatar(
+                              child: Icon(
+                                Icons.keyboard_arrow_right_rounded,
+                                size: 25,
                               ),
-                        ),
-                      ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 25),

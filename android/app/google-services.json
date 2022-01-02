@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "926770532745",
+    "firebase_url": "https://ppl2021-01-hri-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ppl2021-01-hri",
+    "storage_bucket": "ppl2021-01-hri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926770532745:android:b7cfcc953ae6bad12d9158",
+        "android_client_info": {
+          "package_name": "com.heaven_riders_india"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "926770532745-1htvj7g68it7t80fjc33e9t5cosrndri.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heaven_riders_india",
+            "certificate_hash": "394e6fe438775205ac67b9468934774504cb0814"
+          }
+        },
+        {
+          "client_id": "926770532745-d784unabgvco2k36g9ijc8t14ce0tne0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLSuYJCb4ywG0xRq5_9ilcr6V_znIfpEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "926770532745-d784unabgvco2k36g9ijc8t14ce0tne0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "926770532745-l01viqr2eausp0mjs10mse0rcu72q5ab.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.projectro.heavenRidersIndia"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
